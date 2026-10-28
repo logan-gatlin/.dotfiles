@@ -1,0 +1,87 @@
+# Global Helix language configuration
+# Project-specific configurations should go in .helix/languages.toml in each project
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter = { command = "rustfmt" }
+language-servers = ["rust-analyzer"]
+
+[language-server.rust-analyzer.config]
+diagnostics.experimental.enable = true
+
+[language-server.wat-lsp]
+command = "wat-lsp"
+
+[[language]]
+name = "wat"
+scope = "source.wat"
+file-types = ["wat"]
+comment-token = ";;"
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["wat-lsp"]
+
+[language-server.crates-lsp]
+command = "crates-lsp"
+except-features = ["format"]
+# config = {} # Configuration options go here
+
+[language-server.taplo]
+config = {}
+
+[[language]]
+name = "toml"
+language-servers = [ "crates-lsp", "taplo" ]
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+# JavaScript / TypeScript development
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+
+[[language]]
+name = "jsonc"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+
+# Python: pyright for types and navigation, ruff for lint and formatting.
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "uvx"
+args = ["ruff", "server"]
+
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]

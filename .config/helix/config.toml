@@ -1,0 +1,38 @@
+theme = "monokai"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+center = ["diagnostics", "workspace-diagnostics"]
+right = ["register", "position", "position-percentage"]
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+K = "hover"
+L = "goto_next_buffer"
+H = "goto_previous_buffer"
+'0' = "goto_line_start"
+q = ":reflow"
+R = ":reload"
+
+[keys.normal.space]
+w = ":w"
+q = ":q"
+f = "file_picker_in_current_directory"
+F = "file_picker"
+e = "file_picker_in_current_directory"
+c = ":buffer-close"
+
+[keys.select]
+tab = "indent"
+S-tab = "unindent"
+q = ":reflow"
+
+[keys.insert]
+S-tab = "unindent"
+
+[editor.cursor-shape]
+insert = "bar"
